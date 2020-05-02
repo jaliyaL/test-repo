@@ -39,8 +39,8 @@ func main() {
 	}
 
 	for _, em := range emps {
-		otAmount := calOTAmount(em.otRate, em.otHrs)
-		fullSalary := calfullSalary(em.basic, otAmount)
+		calOTAmount(em.otRate, em.otHrs)
+		calfullSalary(em.basic, otAmount)
 		fmt.Println(em.name, "| basic:", em.basic, "| otRate:", em.otRate, "| otHrs:", em.otHrs, "| Full Salary:", fullSalary)
 		//time.Sleep(1 * time.Second)
 	}

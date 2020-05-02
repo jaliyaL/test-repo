@@ -28,7 +28,7 @@ func main() {
 	//emps := []employee{}
 	emps := make([]employee, 0)
 
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 1000; i++ {
 		emp := employee{
 			name:   "wewewe",
 			basic:  rand.Intn(100000),
@@ -40,11 +40,11 @@ func main() {
 
 	for _, em := range emps {
 		chOtAm := make(chan int)
-		chFulSal := make(chan int)
+		//chFulSal := make(chan int)
 
 		go calOTAmount(em.otRate, em.otHrs, chOtAm)
-		go calfullSalary(em.basic, <-chOtAm, chFulSal)
-		fmt.Println(em.name, "| basic:", em.basic, "| otRate:", em.otRate, "| otHrs:", em.otHrs, "| Full Salary:", <-chFulSal)
+		//go calfullSalary(em.basic, <-chOtAm, chFulSal)
+		fmt.Println(em.name, "| basic:", em.basic, "| otRate:", em.otRate, "| otHrs:", em.otHrs, "| Full Salary:", <-chOtAm)
 	}
 	endTime := time.Now()
 	fmt.Println("endTime time  ", endTime)

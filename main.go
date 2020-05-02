@@ -28,7 +28,7 @@ func main() {
 	//emps := []employee{}
 	emps := make([]employee, 0)
 
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 10000; i++ {
 		emp := employee{
 			name:   "wewewe",
 			basic:  rand.Intn(100000),
@@ -40,8 +40,8 @@ func main() {
 
 	for _, em := range emps {
 		otAmount := calOTAmount(em.otRate, em.otHrs)
-		fullSalary := calfullSalary(em.basic, otAmount)
-		fmt.Println(em.name, "| basic:", em.basic, "| otRate:", em.otRate, "| otHrs:", em.otHrs, "| Full Salary:", fullSalary)
+		//fullSalary := calfullSalary(em.basic, otAmount)
+		fmt.Println(em.name, "| basic:", em.basic, "| otRate:", em.otRate, "| otHrs:", em.otHrs, "| Full Salary:", otAmount)
 		//time.Sleep(1 * time.Second)
 	}
 	endTime := time.Now()

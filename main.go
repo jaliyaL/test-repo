@@ -3,51 +3,73 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"sync"
+	"time"
 )
-import "time"
 
-type employee struct {
-	name   string
-	basic  int
-	otRate int
-	otHrs  int
+type Job struct {
+	id       int
+	randomno int
+}
+type Result struct {
+	job         Job
+	sumofdigits int
 }
 
-func calfullSalary(basic int, otAmount int, chFulSal chan int) {
-	chFulSal <- basic + otAmount
-}
+var jobs = make(chan Job, 10)
+var results = make(chan Result, 10)
 
-func calOTAmount(otRate int, otHrs int, chOtAm chan int) {
-	//time.Sleep(1 * time.Second)
-	chOtAm <- otRate * otHrs
+func digits(number int) int {
+	sum := 0
+	no := number
+	for no != 0 {
+		digit := no % 10
+		sum += digit
+		no /= 10
+	}
+	//time.Sleep(2 * time.Second)
+	return sum
 }
-
+func worker(wg *sync.WaitGroup) {
+	for job := range jobs {
+		output := Result{job, digits(job.randomno)}
+		results <- output
+	}
+	wg.Done()
+}
+func createWorkerPool(noOfWorkers int) {
+	var wg sync.WaitGroup
+	for i := 0; i < noOfWorkers; i++ {
+		wg.Add(1)
+		go worker(&wg)
+	}
+	wg.Wait()
+	close(results)
+}
+func allocate(noOfJobs int) {
+	for i := 0; i < noOfJobs; i++ {
+		randomno := rand.Intn(999)
+		job := Job{i, randomno}
+		jobs <- job
+	}
+	close(jobs)
+}
+func result(done chan bool) {
+	for result := range results {
+		fmt.Printf("Job id %d, input random no %d , sum of digits %d\n", result.job.id, result.job.randomno, result.sumofdigits)
+	}
+	done <- true
+}
 func main() {
 	startTime := time.Now()
-	fmt.Println("startTime time  ", startTime)
-	//emps := []employee{}
-	emps := make([]employee, 0)
-
-	for i := 0; i < 10000; i++ {
-		emp := employee{
-			name:   "wewewe",
-			basic:  rand.Intn(100000),
-			otRate: rand.Intn(1000),
-			otHrs:  rand.Intn(100),
-		}
-		emps = append(emps, emp)
-	}
-
-	for _, em := range emps {
-		chOtAm := make(chan int)
-		//chFulSal := make(chan int)
-
-		go calOTAmount(em.otRate, em.otHrs, chOtAm)
-		//go calfullSalary(em.basic, <-chOtAm, chFulSal)
-		fmt.Println(em.name, "| basic:", em.basic, "| otRate:", em.otRate, "| otHrs:", em.otHrs, "| Full Salary:", <-chOtAm)
-	}
+	noOfJobs := 100
+	go allocate(noOfJobs)
+	done := make(chan bool)
+	go result(done)
+	noOfWorkers := 50
+	createWorkerPool(noOfWorkers)
+	<-done
 	endTime := time.Now()
-	fmt.Println("endTime time  ", endTime)
 	diff := endTime.Sub(startTime)
 	fmt.Println("total time taken ", diff.Seconds(), "seconds")
 }

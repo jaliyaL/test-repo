@@ -281,11 +281,11 @@ func main() {
 
 	for _, em := range emps {
 		otAmount := calOTAmount(em.otRate, em.otHrs)
-		fullSalary := calfullSalary(em.basic, otAmount)
-		fmt.Println(em.name, "Full Salary: ", fullSalary)
+		//fullSalary := calfullSalary(em.basic, otAmount)
+		//fmt.Println(em.name, "Full Salary: ", fullSalary)
 
 		//time.Sleep(1 * time.Second)
-
+		fmt.Println(em.name, "otAmount: ", otAmount)
 	}
 	endTime := time.Now()
 	diff := endTime.Sub(startTime)

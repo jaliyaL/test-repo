@@ -296,4 +296,6 @@ func main() {
 	endTime := time.Now()
 	diff := endTime.Sub(startTime)
 	fmt.Println("total time taken ", diff.Nanoseconds(), "Nanoseconds")
+	fmt.Println("======================================")
+	fmt.Println("Average time taken '130000 - 200000' Nanoseconds")
 }

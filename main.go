@@ -25,10 +25,227 @@ func main() {
 	emps := []employee{}
 
 	emps = append(emps, employee{
-		name:   "Samann",
-		basic:  20000,
+		name:   "Saman",
+		basic:  100000,
 		otRate: 500,
-		otHrs:  10,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "Gasalu",
+		basic:  50000,
+		otRate: 300,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Raju",
+		basic:  45000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "ko",
+		basic:  500000,
+		otRate: 700,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "roja",
+		basic:  60000,
+		otRate: 600,
+		otHrs:  30,
+	})
+	emps = append(emps, employee{
+		name:   "konara",
+		basic:  25000,
+		otRate: 700,
+		otHrs:  40,
+	})
+
+	emps = append(emps, employee{
+		name:   "Saman",
+		basic:  100000,
+		otRate: 500,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "Gasalu",
+		basic:  50000,
+		otRate: 300,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Raju",
+		basic:  45000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "ko",
+		basic:  500000,
+		otRate: 700,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "roja",
+		basic:  60000,
+		otRate: 600,
+		otHrs:  30,
+	})
+	emps = append(emps, employee{
+		name:   "konara",
+		basic:  25000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Saman",
+		basic:  100000,
+		otRate: 500,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "Gasalu",
+		basic:  50000,
+		otRate: 300,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Raju",
+		basic:  45000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "ko",
+		basic:  500000,
+		otRate: 700,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "roja",
+		basic:  60000,
+		otRate: 600,
+		otHrs:  30,
+	})
+	emps = append(emps, employee{
+		name:   "konara",
+		basic:  25000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Saman",
+		basic:  100000,
+		otRate: 500,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "Gasalu",
+		basic:  50000,
+		otRate: 300,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Raju",
+		basic:  45000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "ko",
+		basic:  500000,
+		otRate: 700,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "roja",
+		basic:  60000,
+		otRate: 600,
+		otHrs:  30,
+	})
+	emps = append(emps, employee{
+		name:   "konara",
+		basic:  25000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Saman",
+		basic:  100000,
+		otRate: 500,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "Gasalu",
+		basic:  50000,
+		otRate: 300,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Raju",
+		basic:  45000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "ko",
+		basic:  500000,
+		otRate: 700,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "roja",
+		basic:  60000,
+		otRate: 600,
+		otHrs:  30,
+	})
+	emps = append(emps, employee{
+		name:   "konara",
+		basic:  25000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Saman",
+		basic:  100000,
+		otRate: 500,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "Gasalu",
+		basic:  50000,
+		otRate: 300,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Raju",
+		basic:  45000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "ko",
+		basic:  500000,
+		otRate: 700,
+		otHrs:  20,
+	})
+	emps = append(emps, employee{
+		name:   "roja",
+		basic:  60000,
+		otRate: 600,
+		otHrs:  30,
+	})
+	emps = append(emps, employee{
+		name:   "konara",
+		basic:  25000,
+		otRate: 700,
+		otHrs:  40,
+	})
+	emps = append(emps, employee{
+		name:   "Saman",
+		basic:  100000,
+		otRate: 500,
+		otHrs:  20,
 	})
 	emps = append(emps, employee{
 		name:   "Gasalu",

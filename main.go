@@ -28,7 +28,7 @@ func main() {
 	//emps := []employee{}
 	emps := make([]employee, 0)
 
-	for i := 0; i < 100000; i++ {
+	for i := 0; i < 1000; i++ {
 		emp := employee{
 			name:   "wewewe",
 			basic:  rand.Intn(100000),

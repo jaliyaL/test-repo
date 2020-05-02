@@ -13,13 +13,13 @@ type employee struct {
 	otHrs  int
 }
 
-func calfullSalary(basic int, otAmount int) int {
-	return basic + otAmount
+func calfullSalary(basic int, otAmount int, chFulSal chan int) {
+	chFulSal <- basic + otAmount
 }
 
-func calOTAmount(otRate int, otHrs int) int {
+func calOTAmount(otRate int, otHrs int, chOtAm chan int) {
 	//time.Sleep(1 * time.Second)
-	return otRate * otHrs
+	chOtAm <- otRate * otHrs
 }
 
 func main() {
@@ -39,9 +39,12 @@ func main() {
 	}
 
 	for _, em := range emps {
-		calOTAmount(em.otRate, em.otHrs)
-		calfullSalary(em.basic, otAmount)
-		fmt.Println(em.name, "| basic:", em.basic, "| otRate:", em.otRate, "| otHrs:", em.otHrs, "| Full Salary:", fullSalary)
+		chOtAm := make(chan int)
+		chFulSal := make(chan int)
+
+		calOTAmount(em.otRate, em.otHrs, chOtAm)
+		calfullSalary(em.basic, <-chOtAm, chFulSal)
+		fmt.Println(em.name, "| basic:", em.basic, "| otRate:", em.otRate, "| otHrs:", em.otHrs, "| Full Salary:", <-chFulSal)
 		//time.Sleep(1 * time.Second)
 	}
 	endTime := time.Now()

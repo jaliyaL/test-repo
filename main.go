@@ -39,7 +39,7 @@ func main() {
 	}
 
 	for _, em := range emps {
-		chOtAm := make(chan int)
+		chOtAm := make(chan int, 5)
 		//chFulSal := make(chan int)
 
 		go calOTAmount(em.otRate, em.otHrs, chOtAm)

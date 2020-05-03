@@ -2,74 +2,60 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
-	"sync"
 	"time"
 )
 
-type Job struct {
-	id       int
-	randomno int
-}
-type Result struct {
-	job         Job
-	sumofdigits int
+func test(chtest chan int) {
+
+	for i := 0; i < 50; i++ {
+		fmt.Println("test", i)
+	}
+	fmt.Println("test finished")
+	chtest <- 10
+
 }
 
-var jobs = make(chan Job, 10)
-var results = make(chan Result, 10)
+func test2(chtest2 chan int) {
 
-func digits(number int) int {
-	sum := 0
-	no := number
-	for no != 0 {
-		digit := no % 10
-		sum += digit
-		no /= 10
+	for i := 0; i < 10; i++ {
+		fmt.Println("test2", i)
 	}
-	//time.Sleep(2 * time.Second)
-	return sum
+	fmt.Println("test2 finished")
+	chtest2 <- 10
+
 }
-func worker(wg *sync.WaitGroup) {
-	for job := range jobs {
-		output := Result{job, digits(job.randomno)}
-		results <- output
-	}
-	wg.Done()
-}
-func createWorkerPool(noOfWorkers int) {
-	var wg sync.WaitGroup
-	for i := 0; i < noOfWorkers; i++ {
-		wg.Add(1)
-		go worker(&wg)
-	}
-	wg.Wait()
-	close(results)
-}
-func allocate(noOfJobs int) {
-	for i := 0; i < noOfJobs; i++ {
-		randomno := rand.Intn(999)
-		job := Job{i, randomno}
-		jobs <- job
-	}
-	close(jobs)
-}
-func result(done chan bool) {
-	for result := range results {
-		fmt.Printf("Job id %d, input random no %d , sum of digits %d\n", result.job.id, result.job.randomno, result.sumofdigits)
-	}
-	done <- true
-}
+
+//func test(){
+//
+//	for i:=0; i<50; i++ {
+//		fmt.Println("Rat", i)
+//	}
+//
+//}
+//
+//func test2(){
+//
+//	for i:=0; i<10; i++ {
+//		fmt.Println("test2", i)
+//	}
+//}
+
 func main() {
 	startTime := time.Now()
-	noOfJobs := 100
-	go allocate(noOfJobs)
-	done := make(chan bool)
-	go result(done)
-	noOfWorkers := 50
-	createWorkerPool(noOfWorkers)
-	<-done
+
+	//with gorutine
+	chtest := make(chan int)
+	chtest2 := make(chan int)
+	go test(chtest)
+	go test2(chtest2)
+	<-chtest
+	<-chtest2
+
+	//without routine
+	//test()
+	//test2()
+
 	endTime := time.Now()
 	diff := endTime.Sub(startTime)
-	fmt.Println("total time taken ", diff.Seconds(), "seconds")
+	fmt.Println("total time taken ", diff.Nanoseconds(), "Nanoseconds")
 }
